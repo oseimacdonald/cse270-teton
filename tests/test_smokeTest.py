@@ -13,8 +13,11 @@ from selenium.webdriver.firefox.options import Options
 
 class TestSmokeTest():
   def setup_method(self, method):
-    options = options()
-    options.add_augument("--headless = new")
+    options = Options()
+    options.add_argument("--headless = new")
+    # Add Firefox-specific preferences
+    options.set_preference("dom.webdriver.enabled", False)
+    options.set_preference("useAutomationExtension", False)
     self.driver = webdriver.Firefox(options=options)
     self.vars = {}
   
